@@ -20,6 +20,8 @@ At the bottom of the file, write the total expenses, total revenue, and total pr
 
 package com.gaby;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -40,102 +42,36 @@ static Drink coffee;
 static Drink chaiTea;
 static Drink mocha;
 
-//sc4nn3r
-static Scanner scan = new Scanner(System.in);
+private static File drinkListFile;
+private static ArrayList<Drink> drinkList;
 
-//one arraylist for all drink data
-ArrayList<Drink> drinkList = new ArrayList<Drink>();
+public static void main(String[] args) throws IOException{
 
-public static void main(String[] args){
-
-//read coffee file into drinkList
+//read coffee file into drinkList...
+	FileReader reader = new FileReader();
+	drinkListFile = new File("C:/workspace/CoffeeShop/src/com/gaby/coffee.txt");
+	try {
+	//..with generateDrinks method
+	drinkList = reader.generateDrinks(drinkListFile);
+	}
+	catch(Exception ex) {
+		throw ex;
+	}
 	
-//Query user for sales info, with input validation, use setters to add to Drinks
-System.out.println("How many cappuccino drinks were sold today?" );
-while (!scan.hasNextInt()) {
-    System.out.println("That's not an integer!");
-    scan.nextInt();
-}
-cappuccino.setTotalSold(scan.nextInt());
+	//Query user for sales info, with input validation, use setters to add to Drinks
+	//new report object, loop through the list to query user for sales info (input validation in method)
+	Report report = new Report();
+	for(int i = 0; i < drinkList.size(); i++) {
+		report.queryUserForTotals(drinkList.get(i));
+	}
+	System.out.println("I've got all the data, next to generate a report of the total sales.");
+	
+//generate sales report for each Drink and write to sales-report.txt
+	report.makeReport(drinkList);
+	System.exit(0);
 
-System.out.println("How many espressos were sold today?" );
-while (!scan.hasNextInt()) {
-    System.out.println("That's not an integer!");
-    scan.nextInt();
-}
-espresso.setTotalSold(scan.nextInt());
+	
+	
 
-System.out.println("How many lattes were sold today?" );
-while (!scan.hasNextInt()) {
-    System.out.println("That's not an integer!");
-    scan.nextInt();
-}
-latte.setTotalSold(scan.nextInt());
-
-System.out.println("How many black teas were sold today?" );
-while (!scan.hasNextInt()) {
-    System.out.println("That's not an integer!");
-    scan.nextInt();
-}
-blackTea.setTotalSold(scan.nextInt());
-
-System.out.println("How many herbal teas were sold today?" );
-while (!scan.hasNextInt()) {
-    System.out.println("That's not an integer!");
-    scan.nextInt();
-}
-herbalTea.setTotalSold(scan.nextInt());
-
-System.out.println("How many macchiatos were sold today?" );
-while (!scan.hasNextInt()) {
-    System.out.println("That's not an integer!");
-    scan.nextInt();
-}
-macchiato.setTotalSold(scan.nextInt());
-
-System.out.println("How many americanos were sold today?" );
-while (!scan.hasNextInt()) {
-    System.out.println("That's not an integer!");
-    scan.nextInt();
-}
-americano.setTotalSold(scan.nextInt());
-
-System.out.println("How many cold presses were sold today?" );
-while (!scan.hasNextInt()) {
-    System.out.println("That's not an integer!");
-    scan.nextInt();
-}
-coldPress.setTotalSold(scan.nextInt());
-
-System.out.println("How many hot chocolates were sold today?" );
-while (!scan.hasNextInt()) {
-    System.out.println("That's not an integer!");
-    scan.nextInt();
-}
-hotChocolate.setTotalSold(scan.nextInt());
-
-System.out.println("How many coffees were sold today?" );
-while (!scan.hasNextInt()) {
-    System.out.println("That's not an integer!");
-    scan.nextInt();
-}
-coffee.setTotalSold(scan.nextInt());
-
-System.out.println("How many chai teas were sold today?" );
-while (!scan.hasNextInt()) {
-    System.out.println("That's not an integer!");
-    scan.nextInt();
-}
-chaiTea.setTotalSold(scan.nextInt());
-
-System.out.println("How many mochas were sold today?" );
-while (!scan.hasNextInt()) {
-    System.out.println("That's not an integer!");
-    scan.nextInt();
-}
-mocha.setTotalSold(scan.nextInt());
-
-//generate sales report using name and totalSold data from each Drink
-//write the sales report to sales-report.txt
 }
 }

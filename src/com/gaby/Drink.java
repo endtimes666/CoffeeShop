@@ -3,12 +3,12 @@ package com.gaby;
 public class Drink {
 
     private String name;
-    private double cost;
-    private double price;
+    private float cost;
+    private float price;
     private int totalSold;
 
 
-    public Drink(String name, double cost, double price, int totalSold) {
+    public Drink(String name, float cost, float price, int totalSold) {
         super();
         this.name = name;
         this.cost = cost;
@@ -24,19 +24,19 @@ public class Drink {
         this.name = name;
     }
 
-    public double getCost() {
+    public float getCost() {
         return cost;
     }
 
-    public void setCost(double cost) {
+    public void setCost(float cost) {
         this.cost = cost;
     }
 
-    public double getPrice() {
+    public float getPrice() {
         return price;
     }
 
-    public void setPrice(double price) {
+    public void setPrice(float price) {
         this.price = price;
     }
 
